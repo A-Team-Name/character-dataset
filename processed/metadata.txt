@@ -139,6 +139,7 @@ $ number found: 46
 - number found: 50
 . number found: 50
 / number found: 50
+\ number found: 50
 : number found: 50
 ; number found: 50
 < number found: 50
