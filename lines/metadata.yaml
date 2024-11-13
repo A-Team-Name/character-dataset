@@ -1,0 +1,11 @@
+scraped:
+  - python:
+    amount: 168710
+    repos:
+      - public-apis/public-apis
+      - donnemartin/system-design-primer
+      - vinta/awesome-python
+      - TheAlgorithms/Python
+      - Significant-Gravitas/AutoGPT
+      - jackfrued/Python-100-Days
+      - AUTOMATIC1111/stable-diffusion-webui
