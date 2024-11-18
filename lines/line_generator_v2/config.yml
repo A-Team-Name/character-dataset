@@ -1,0 +1,74 @@
+handwriting:
+  global_transforms:
+    rotation:
+      mean: 0
+      var: 5
+      min: -20
+      max: 20
+    width:
+      mean: 58
+      var: 6
+      min: 45
+      max: 64
+    thickness:
+      mean: 3
+      var: 0
+      min: 3
+      max: 3
+    translation_x:
+      mean: -10
+      var: 6
+      min: -25
+      max: 5
+    translation_y:
+      mean: 0
+      var: 6
+      min: -5
+      max: 5
+    height:
+      mean: 58
+      var: 6
+      min: 45
+      max: 64
+  custom_transforms:
+    top_small:
+      height:
+        mean: 15
+        var: 2
+        min: 10
+        max: 20
+      width:
+        mean: 15
+        var: 2
+        min: 10
+        max: 20
+      translation_y:
+        mean: -5
+        var: 2
+        min: -8
+        max: 0
+    operator:
+      height:
+        mean: 45
+        var: 10
+        min: 38
+        max: 64
+      width:
+        mean: 45
+        var: 10
+        min: 38
+        max: 64
+      translation_y:
+        mean: 0
+        var: 5
+        min: -8
+        max: 8
+  character_transforms:
+    u27: top_small
+    u22: top_small
+    u60: top_small
+    u5e: top_small
+    u2b: operator
+
+  
+  
