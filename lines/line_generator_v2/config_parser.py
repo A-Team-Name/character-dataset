@@ -210,6 +210,9 @@ class Config:
     
     def get_width(self, character_unicode: str) -> int:
         return self._get_attribute(character_unicode, "width")
+    
+    def get_thickness(self) -> int:
+        return self._get_attribute("u20", "thickness")
 
 if __name__ == "__main__":
     my_config = Config("example_individual_config.yml")

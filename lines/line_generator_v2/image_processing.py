@@ -5,7 +5,9 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 
-from cv2 import getPerspectiveTransform, warpPerspective, imread, cvtColor, COLOR_RGB2GRAY
+from cv2 import getPerspectiveTransform, warpPerspective, imread, cvtColor, COLOR_RGB2GRAY, getStructuringElement, MORPH_ELLIPSE, imwrite
+
+from skimage.morphology import binary_dilation, thin
 
 def calculate_rotation(coords: np.array, rotation: int) -> np.array:
     """
@@ -28,19 +30,22 @@ def calculate_rotation(coords: np.array, rotation: int) -> np.array:
 class ImageTransformer:
     def __init__(self, config_file: str):
         self.config = Config(config_file)
-        self._image = np.ones((128, 32))*255
+        self._image = np.zeros((256, 32))
         self._last_max_x = 32
         self._last_top_y = 0
         self._last_bottom_y = 64
 
     def show_current(self):
-        plt.imshow(self._image)
+        print(self._image.shape)
+        imwrite("temp3.png", self._image)
+        plt.imshow(self._image, cmap="gray")
         plt.axis("off")
         plt.savefig("temp.png")
 
     def _get_coords(self, unicode: str) -> np.array:
-        char_height = self.config.get_height(unicode)
-        char_width = self.config.get_width(unicode)
+        char_height = self.config.get_height(unicode) * 2
+        print(char_height)
+        char_width = self.config.get_width(unicode) * 2
         char_rotation = self.config.get_rotation(unicode)
         char_translation_y = self.config.get_translation_x(unicode)
         char_translation_x = self.config.get_translation_y(unicode)
@@ -60,7 +65,7 @@ class ImageTransformer:
 
         new_max_x = max(rotated_coords[:, 0])
 
-        self._image = np.pad(self._image, ((0, 0), (0, new_max_x - self._image.shape[1])), constant_values=255)
+        self._image = np.pad(self._image, ((0, 0), (0, new_max_x - self._image.shape[1])), constant_values=0)
 
         self._last_max_x = new_max_x
         self._last_top_y = min(rotated_coords[:, 1])
@@ -69,12 +74,14 @@ class ImageTransformer:
         return rotated_coords.astype("float32")
     
     def _get_char(self, unicode: str) -> np.array:
+        if unicode in ["u20"]:
+            return np.zeros((64,64))
         folder = f"../../processed/{unicode}/"
         char_path = folder + random.choice(os.listdir(folder))
         im = imread(char_path)
         im = cvtColor(im, COLOR_RGB2GRAY)
         im = np.asarray(im)
-        im[np.where(im == 0)] = 1
+        im[np.where(im == 255)] = 254
 
         return np.asarray(im)
 
@@ -85,16 +92,18 @@ class ImageTransformer:
         """
         assert dst.shape == self._image.shape
 
-        mask = (dst == 1)
+        mask = (dst == 254)
 
         self._image[mask] = dst[mask]
-        self._image[self._image < 255] = 0
+        self._image[self._image > 1] = 255
 
 
     def add_character(self, unicode: str) -> None:
         char_img = self._get_char(unicode)
-        char_coords = np.asarray([[0, 0], [0, char_img.shape[1]], [char_img.shape[0], 0], list(char_img.shape[:2])]).astype("float32")
+        char_coords = np.asarray([[0, 0], [0, char_img.shape[0]], [char_img.shape[1], 0], [char_img.shape[1], char_img.shape[0]]]).astype("float32")
         map_coords = self._get_coords(unicode)
+        print(char_coords)
+        print(map_coords)
 
         M = getPerspectiveTransform(char_coords, map_coords)
 
@@ -107,13 +116,14 @@ if __name__ == "__main__":
     transformer = ImageTransformer("config.yml")
 
     code_file = "../python.txt"
-    random_line = ""
-    with open(code_file, "r") as f:
-        random_line = random.choice(f.readlines())
+    random_line = "test_credentials=TEST_CREDENTIALS,"
+    # with open(code_file, "r") as f:
+    #     random_line = random.choice(f.readlines())
         
     print(random_line)
     unicode_codes = ["u"+str(hex(ord(char)))[2:] for char in random_line.strip()]
 
     for u in unicode_codes:
+        print(u)
         transformer.add_character(u)
     transformer.show_current()

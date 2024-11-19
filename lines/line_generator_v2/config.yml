@@ -3,22 +3,22 @@ handwriting:
     rotation:
       mean: 0
       var: 5
-      min: -20
-      max: 20
+      min: -10
+      max: 10
     width:
       mean: 58
       var: 6
-      min: 45
+      min: 50
       max: 64
     thickness:
-      mean: 3
+      mean: 7
       var: 0
-      min: 3
-      max: 3
+      min: 7
+      max: 7
     translation_x:
-      mean: -10
-      var: 6
-      min: -25
+      mean: 0
+      var: 4
+      min: -5
       max: 5
     translation_y:
       mean: 0
@@ -28,7 +28,7 @@ handwriting:
     height:
       mean: 58
       var: 6
-      min: 45
+      min: 50
       max: 64
   custom_transforms:
     top_small:
@@ -38,6 +38,44 @@ handwriting:
         min: 10
         max: 20
       width:
+        mean: 15
+        var: 2
+        min: 10
+        max: 20
+      translation_y:
+        mean: -5
+        var: 2
+        min: -8
+        max: 0
+    bottom_small:
+      height:
+        mean: 15
+        var: 2
+        min: 10
+        max: 20
+      width:
+        mean: 15
+        var: 2
+        min: 10
+        max: 20
+      translation_y:
+        mean: 50
+        var: 5
+        min: 40
+        max: 60
+    bottom_long:
+      height:
+        mean: 15
+        var: 2
+        min: 10
+        max: 20
+      translation_y:
+        mean: 50
+        var: 5
+        min: 40
+        max: 60
+    top_long:
+      height:
         mean: 15
         var: 2
         min: 10
@@ -59,16 +97,56 @@ handwriting:
         min: 38
         max: 64
       translation_y:
-        mean: 0
+        mean: 10
         var: 5
-        min: -8
-        max: 8
+        min: 0
+        max: 20
+    thin:
+      width:
+        mean: 20
+        var: 5
+        min: 10
+        max: 30
+    midthin:
+      width:
+        mean: 30
+        var: 5
+        min: 20
+        max: 40
   character_transforms:
+    u2e: bottom_small
     u27: top_small
     u22: top_small
     u60: top_small
     u5e: top_small
     u2b: operator
+    u230a: thin
+    u2228: operator
+    u2308: thin
+    u2337: midthin
+    u2373: midthin
+    u2374: midthin
+    ua8: top_long
+    uaf: top_long
+    u5f: bottom_long
+    u3d: operator
+    u2c: bottom_small
+    u49: thin
+    u28: thin
+    u29: thin
+    u3a: thin
+    u3b: thin
+    u49: thin
+    u5d: thin
+    u69: thin
+    u6a: thin
+    u6c: thin
+    u74: thin
+    u7b: thin
+    u7c: thin
+    u7d: thin
+
+
 
   
   
