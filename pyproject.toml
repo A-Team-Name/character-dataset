@@ -18,6 +18,7 @@ requests = "^2.32.3"
 regex = "^2024.11.6"
 pyyaml = "^6.0.2"
 opencv-python = "^4.10.0.84"
+tqdm = "^4.67.0"
 
 
 [tool.poetry.group.dev.dependencies]
