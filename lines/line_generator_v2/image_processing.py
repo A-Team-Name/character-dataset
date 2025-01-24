@@ -30,10 +30,10 @@ def calculate_rotation(coords: np.array, rotation: int) -> np.array:
 class ImageTransformer:
     def __init__(self, config_file: str):
         self.config = Config(config_file)
-        self._image = np.zeros((256, 32))
+        self._image = np.zeros((1024, 32))
         self._last_max_x = 32
-        self._last_top_y = 0
-        self._last_bottom_y = 64
+        self._last_top_y = 128
+        self._last_bottom_y = 1024 - 128
 
     def show_current(self):
         print(self._image.shape)
@@ -43,12 +43,17 @@ class ImageTransformer:
         plt.savefig("temp.png")
 
     def _get_coords(self, unicode: str) -> np.array:
-        char_height = self.config.get_height(unicode) * 2
+        char_height = self.config.get_height(unicode)
         print(char_height)
-        char_width = self.config.get_width(unicode) * 2
+        char_width = self.config.get_width(unicode)
         char_rotation = self.config.get_rotation(unicode)
         char_translation_y = self.config.get_translation_x(unicode)
         char_translation_x = self.config.get_translation_y(unicode)
+        print("width", char_width)
+        print("height", char_height)
+        print("rotation", char_rotation)
+        print("translation_x", char_translation_x)
+        print("translation_y", char_translation_y)
         resulting_coords = np.array(
             [
                 [self._last_max_x, 32],
@@ -76,12 +81,18 @@ class ImageTransformer:
     def _get_char(self, unicode: str) -> np.array:
         if unicode in ["u20"]:
             return np.zeros((64,64))
-        folder = f"../../processed/{unicode}/"
-        char_path = folder + random.choice(os.listdir(folder))
-        im = imread(char_path)
-        im = cvtColor(im, COLOR_RGB2GRAY)
-        im = np.asarray(im)
-        im[np.where(im == 255)] = 254
+        
+        not_valid = True
+        
+        while not_valid:
+            folder = f"../../processed/{unicode}/"
+            char_path = folder + random.choice(os.listdir(folder))
+            im = imread(char_path)
+            im = cvtColor(im, COLOR_RGB2GRAY)
+            im = np.asarray(im)
+            if np.mean(im) / 255 > 0.2 and np.mean(im) / 255 < 0.4:
+                not_valid = False
+            im[np.where(im == 255)] = 254
 
         return np.asarray(im)
 
@@ -116,14 +127,15 @@ if __name__ == "__main__":
     transformer = ImageTransformer("config.yml")
 
     code_file = "../python.txt"
-    random_line = "test_credentials=TEST_CREDENTIALS,"
-    # with open(code_file, "r") as f:
-    #     random_line = random.choice(f.readlines())
+    random_line = "def load_model_from_config(self, half_attention):"
+    with open(code_file, "r") as f:
+        random_line = random.choice(f.readlines())
         
     print(random_line)
     unicode_codes = ["u"+str(hex(ord(char)))[2:] for char in random_line.strip()]
 
-    for u in unicode_codes:
+    for i, u in enumerate(unicode_codes):
         print(u)
         transformer.add_character(u)
+        
     transformer.show_current()

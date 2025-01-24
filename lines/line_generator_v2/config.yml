@@ -6,113 +6,108 @@ handwriting:
       min: -10
       max: 10
     width:
-      mean: 58
-      var: 6
-      min: 50
-      max: 64
-    thickness:
-      mean: 7
-      var: 0
-      min: 7
-      max: 7
+      mean: 700
+      var: 20
+      min: 650
+      max: 750
     translation_x:
       mean: 0
-      var: 4
-      min: -5
-      max: 5
+      var: 20
+      min: -50
+      max: 50
     translation_y:
-      mean: 0
-      var: 6
-      min: -5
-      max: 5
+      mean: 128
+      var: 20
+      min: 75
+      max: 150
     height:
-      mean: 58
-      var: 6
-      min: 50
-      max: 64
+      mean: 700
+      var: 20
+      min: 650
+      max: 750
   custom_transforms:
     top_small:
       height:
-        mean: 15
-        var: 2
-        min: 10
-        max: 20
+        mean: 150
+        var: 20
+        min: 100
+        max: 200
       width:
-        mean: 15
-        var: 2
-        min: 10
-        max: 20
+        mean: 150
+        var: 20
+        min: 100
+        max: 200
       translation_y:
-        mean: -5
-        var: 2
-        min: -8
-        max: 0
+        mean: 20
+        var: 10
+        min: 0
+        max: 60
     bottom_small:
       height:
-        mean: 15
-        var: 2
-        min: 10
-        max: 20
+        mean: 150
+        var: 20
+        min: 100
+        max: 200
       width:
-        mean: 15
-        var: 2
-        min: 10
-        max: 20
+        mean: 150
+        var: 20
+        min: 100
+        max: 200
       translation_y:
-        mean: 50
-        var: 5
-        min: 40
-        max: 60
+        mean: 750
+        var: 20
+        min: 700
+        max: 800
     bottom_long:
       height:
-        mean: 15
-        var: 2
-        min: 10
-        max: 20
+        mean: 150
+        var: 20
+        min: 100
+        max: 200
       translation_y:
-        mean: 50
-        var: 5
-        min: 40
-        max: 60
+        mean: 750
+        var: 20
+        min: 700
+        max: 800
     top_long:
       height:
-        mean: 15
-        var: 2
-        min: 10
-        max: 20
+        mean: 150
+        var: 20
+        min: 100
+        max: 200
       translation_y:
-        mean: -5
-        var: 2
-        min: -8
-        max: 0
+        mean: 20
+        var: 10
+        min: 0
+        max: 60
     operator:
       height:
-        mean: 45
-        var: 10
-        min: 38
-        max: 64
+        mean: 450
+        var: 20
+        min: 380
+        max: 640
       width:
-        mean: 45
-        var: 10
-        min: 38
-        max: 64
+        mean: 500
+        var: 50
+        min: 400
+        max: 600
       translation_y:
-        mean: 10
-        var: 5
-        min: 0
-        max: 20
+        mean: 256
+        var: 30
+        min: 200
+        max: 330
     thin:
       width:
-        mean: 20
-        var: 5
-        min: 10
-        max: 30
+        mean: 200
+        var: 20
+        min: 100
+        max: 300
     midthin:
       width:
-        mean: 30
-        var: 5
-        min: 20
-        max: 40
+        mean: 300
+        var: 20
+        min: 200
+        max: 400
   character_transforms:
     u2e: bottom_small
     u27: top_small
