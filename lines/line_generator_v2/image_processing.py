@@ -85,12 +85,12 @@ class ImageTransformer:
         not_valid = True
         
         while not_valid:
-            folder = f"../../processed/{unicode}/"
+            folder = f"../../cleaned/{unicode}/"
             char_path = folder + random.choice(os.listdir(folder))
             im = imread(char_path)
             im = cvtColor(im, COLOR_RGB2GRAY)
             im = np.asarray(im)
-            if np.mean(im) / 255 > 0.2 and np.mean(im) / 255 < 0.4:
+            if np.mean(im) / 255 > 0.2 and np.mean(im) / 255 < 0.4 or unicode in ["u2e"]:
                 not_valid = False
             im[np.where(im == 255)] = 254
 
@@ -127,7 +127,7 @@ if __name__ == "__main__":
     transformer = ImageTransformer("config.yml")
 
     code_file = "../python.txt"
-    random_line = "def load_model_from_config(self, half_attention):"
+    random_line = """messages[-1]["content"] += "\\n" + p["content"]"""
     with open(code_file, "r") as f:
         random_line = random.choice(f.readlines())
         

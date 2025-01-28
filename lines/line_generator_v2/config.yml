@@ -108,7 +108,19 @@ handwriting:
         var: 20
         min: 200
         max: 400
+    midlong:
+      height:
+        mean: 150
+        var: 20
+        min: 100
+        max: 200
+      translation_y:
+        mean: 300
+        var: 20
+        min: 250
+        max: 400
   character_transforms:
+    u2d: midlong
     u2e: bottom_small
     u27: top_small
     u22: top_small
