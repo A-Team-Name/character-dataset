@@ -28,6 +28,7 @@ class Config:
         u22a3
         u22a4
         u22a5
+        u22c4
         u2308
         u230a
         u2336
@@ -59,9 +60,13 @@ class Config:
         u2372
         u2373
         u2374
+        u2375
         u2377
         u2378
+        u237a
+        u2395
         u25cb
+        u3bb
         u30
         u31
         u32

@@ -11,10 +11,10 @@ handwriting:
       min: 650
       max: 750
     translation_x:
-      mean: 0
+      mean: 50
       var: 20
-      min: -50
-      max: 50
+      min: 5
+      max: 150
     translation_y:
       mean: 128
       var: 20
@@ -46,12 +46,12 @@ handwriting:
       height:
         mean: 150
         var: 20
-        min: 100
+        min: 75
         max: 200
       width:
         mean: 150
         var: 20
-        min: 100
+        min: 75
         max: 200
       translation_y:
         mean: 750
