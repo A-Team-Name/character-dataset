@@ -1,0 +1,62 @@
+handwriting:
+  global_transforms:
+    stitch: "BOTTOM"
+    rotation:
+      mean: 0
+      var: 5
+      min: -10
+      max: 10
+    padding:
+      mean: 2
+      var: 3
+      min: 0
+      max: 4
+    translation:
+      mean: 5
+      var: 2
+      min: 0
+      max: 8
+    height:
+      mean: 59
+      var: 4
+      min: 55
+      max: 64
+    thickness:
+      mean: 3
+      var: 0
+      min: 3
+      max: 3
+  custom_transforms:
+    top_small:
+      stitch: "TOP"
+      height:
+        mean: 15
+        var: 2
+        min: 10
+        max: 20
+      translation:
+        mean: -5
+        var: 2
+        min: -8
+        max: 0
+    operator:
+      stitch: "MIDDLE"
+      height:
+        mean: 45
+        var: 10
+        min: 38
+        max: 64
+      translation:
+        mean: 0
+        var: 5
+        min: -8
+        max: 8
+  character_transforms:
+    u27: top_small
+    u22: top_small
+    u60: top_small
+    u5e: top_small
+    u2b: operator
+
+  
+  
