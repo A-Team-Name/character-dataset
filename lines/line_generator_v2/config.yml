@@ -1,0 +1,159 @@
+handwriting:
+  global_transforms:
+    rotation:
+      mean: 0
+      var: 5
+      min: -10
+      max: 10
+    width:
+      mean: 700
+      var: 20
+      min: 650
+      max: 750
+    translation_x:
+      mean: 50
+      var: 20
+      min: 5
+      max: 150
+    translation_y:
+      mean: 128
+      var: 20
+      min: 75
+      max: 150
+    height:
+      mean: 700
+      var: 20
+      min: 650
+      max: 750
+  custom_transforms:
+    top_small:
+      height:
+        mean: 150
+        var: 20
+        min: 100
+        max: 200
+      width:
+        mean: 150
+        var: 20
+        min: 100
+        max: 200
+      translation_y:
+        mean: 20
+        var: 10
+        min: 0
+        max: 60
+    bottom_small:
+      height:
+        mean: 150
+        var: 20
+        min: 75
+        max: 200
+      width:
+        mean: 150
+        var: 20
+        min: 75
+        max: 200
+      translation_y:
+        mean: 750
+        var: 20
+        min: 700
+        max: 800
+    bottom_long:
+      height:
+        mean: 150
+        var: 20
+        min: 100
+        max: 200
+      translation_y:
+        mean: 750
+        var: 20
+        min: 700
+        max: 800
+    top_long:
+      height:
+        mean: 150
+        var: 20
+        min: 100
+        max: 200
+      translation_y:
+        mean: 20
+        var: 10
+        min: 0
+        max: 60
+    operator:
+      height:
+        mean: 450
+        var: 20
+        min: 380
+        max: 640
+      width:
+        mean: 500
+        var: 50
+        min: 400
+        max: 600
+      translation_y:
+        mean: 256
+        var: 30
+        min: 200
+        max: 330
+    thin:
+      width:
+        mean: 200
+        var: 20
+        min: 100
+        max: 300
+    midthin:
+      width:
+        mean: 300
+        var: 20
+        min: 200
+        max: 400
+    midlong:
+      height:
+        mean: 150
+        var: 20
+        min: 100
+        max: 200
+      translation_y:
+        mean: 300
+        var: 20
+        min: 250
+        max: 400
+  character_transforms:
+    u2d: midlong
+    u2e: bottom_small
+    u27: top_small
+    u22: top_small
+    u60: top_small
+    u5e: top_small
+    u2b: operator
+    u230a: thin
+    u2228: operator
+    u2308: thin
+    u2337: midthin
+    u2373: midthin
+    u2374: midthin
+    ua8: top_long
+    uaf: top_long
+    u5f: bottom_long
+    u3d: operator
+    u2c: bottom_small
+    u49: thin
+    u28: thin
+    u29: thin
+    u3a: thin
+    u3b: thin
+    u49: thin
+    u5d: thin
+    u69: thin
+    u6a: thin
+    u6c: thin
+    u74: thin
+    u7b: thin
+    u7c: thin
+    u7d: thin
+
+
+
+  
+  
